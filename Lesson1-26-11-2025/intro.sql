@@ -18,7 +18,6 @@ ADD Color NVARCHAR(MAX);		-- Add a column
 ALTER TABLE Products
 ADD Money DECIMAL(7,2);	-- Total number of digits, total number of decimal degits (eg. 99999.99)
 
-
 ALTER TABLE Products 
 DROP COLUMN Color;				-- Remove a column
 
@@ -30,6 +29,9 @@ VALUES ('Jacket', 'Black', 49.99, 0);
 
 INSERT INTO Products -- Automatically assumes all columns in the order they appear in the table
 VALUES ('Trousers', 46.99, 10, 0, '2025-01-15', 'Red') -- Dates always as text in YYYY-MM-DD
+
+INSERT INTO Products (ProductName, Color, Price, Discontinued, ReleaseDate)
+VALUES ('Jacket', 'Black', 49.99, 0, '2025-01-15');
 
 INSERT INTO Products (ProductName, Color, Price, Discontinued)
 VALUES
@@ -44,3 +46,13 @@ ORDER BY ProductName, Price;
 
 SELECT ProductName, Price, Color FROM Products		-- Select specific columns
 ORDER BY ProductName DESC;
+
+SELECT ProductName,Price, Color FROM Products
+WHERE ProductName = 'Laptop'
+ORDER BY ProductName, Price DESC
+
+SELECT ProductName,Price, Color FROM Products
+WHERE Price >= 49.99; 
+
+SELECT ProductName, Color FROM Products
+WHERE Price > 80 AND ProductName != 'Laptop';

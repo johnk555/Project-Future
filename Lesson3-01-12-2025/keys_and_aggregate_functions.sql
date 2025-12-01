@@ -179,3 +179,7 @@ FROM Employees;
 
 SELECT COUNT(Distinct DepartmentID)
 FROM Employees;
+
+SELECT
+	E.FirstName + ' ' + E.LastName AS EmployeeName
+FROM Employees E

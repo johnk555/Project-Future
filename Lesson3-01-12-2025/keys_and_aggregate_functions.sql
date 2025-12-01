@@ -51,7 +51,8 @@ INSERT INTO Employees (FirstName, LastName, DateOfBirth, Salary, DepartmentID) V
 ('David', 'Chen', '1992-04-30', 90000.00, 2),
 ('Sarah', 'King', '1987-12-05', 70000.00, 3),
 ('Chris', 'Evans', '1975-02-14', 105000.00, 1),
-('Maria', 'Lopez', '1994-06-03', 110000.00, 4);
+('Maria', 'Lopez', '1994-06-03', 110000.00, 4),
+('John' , 'Karelas' , '1985-05-15', 85000.00, 2);
 
 SELECT * FROM Department
 
@@ -148,3 +149,33 @@ INSERT INTO EmployeeSales (EmployeeID, SaleDate, Amount, Region) VALUES
 (10, '2025-11-04', 1200.00, 'West');
 
 SELECT * FROM EmployeeSales;
+
+SELECT c.FirstName, c.LastName, e.FirstName as ParentFirstName FROM Employees e 
+LEFT JOIN EmployeeChildren c
+ON e.EmployeeID = c.EmployeeID
+
+
+
+
+-- Aggregate functions,  eg. SUM, COUNT, AVERAGE, MIN/MAX
+
+SELECT SUM(Salary) as TotalEmployeeSalary 
+FROM Employees;
+
+SELECT SUM(Amount) 
+FROM EmployeeSales
+WHERE EmployeeID = 1;
+
+SELECT SUM(Distinct Amount)
+FROM EmployeeSales
+WHERE EmployeeID = 1;
+
+SELECT COUNT(*)
+FROM EmployeeSales
+WHERE EmployeeID = 1;
+
+SELECT COUNT(*)
+FROM Employees;
+
+SELECT COUNT(Distinct DepartmentID)
+FROM Employees;
